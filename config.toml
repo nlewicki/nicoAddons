@@ -1,4 +1,5 @@
 
 [general]
-	auto4 = false
+	auto4 = true
+	rod_slot = "5"
 

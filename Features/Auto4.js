@@ -1,5 +1,7 @@
 import Settings from "../Settings";
 
+// add dauerschiesen und erst weiter rotieren wenn geschossen wurde
+
 const DevBlocks = [
     { x: 64, y: 126, z: 50 },
     { x: 66, y: 126, z: 50 },
@@ -17,12 +19,9 @@ let originalSlotIndex = -1;
 let doneCoords = new Set();
 
 function findItemInHotbar(itemId) {
-    const player = Player.getPlayer();
-    if (!player) return -1;
-    const inventory = player.field_71071_by;
-    if (!inventory) return -1;
-    for (let i = 0; i < 9; i++) {
-        const item = inventory.getStackInSlot(i);
+    const inventory = Player.getInventory().getItems().slice(0, 9);
+    for (let i = 0; i < inventory.length; i++) {
+        let item = inventory[i];
         if (item && item.getID() === itemId) {
             return i;
         }
@@ -30,7 +29,7 @@ function findItemInHotbar(itemId) {
     return -1;
 }
 
-let rodIndex = findItemInHotbar(346) + 1;
+let rodIndex = findItemInHotbar(346);
 
 const isNearPlate = () => Player.getY() == 127 && Player.getX() >= 62 && Player.getX() <= 65 && Player.getZ() >= 34 && Player.getZ() <= 37;
 
@@ -177,18 +176,26 @@ register("tick", () => {
         rightClick();
         lastShot = Date.now();
 
-        if (doneCoords.size === 5 && ItemIsInHotbar(346) && rodIndex !== -1) {
+        if (doneCoords.size === 5 && rodIndex !== -1) {
             ChatLib.chat("&eStarting RodSwap: Switching to slot " + rodIndex + 1);
-            swapToSlot(rodIndex);
+            rodIndex = findItemInHotbar(346);
             setTimeout(() => {
-                rightClick();
+                swapToSlot(rodIndex);
                 setTimeout(() => {
-                    swapBackToOriginal();
-                }, 100); // Delay after right-click for swapping back
-            }, 100); // Delay for item switch
+                    rightClick();
+                    setTimeout(() => {
+                        swapBackToOriginal();
+                    }, 100); // Delay after right-click for swapping back
+                }, 100); // Delay for item switch
+            }, 50); // Delay before switching to rod
         }
-    });  
+    });
 });
+
+register("command", () => {
+    ChatLib.chat("&ereseting Auto4");
+    doneCoords.clear();
+} ).setName("re");   
 
 register("worldUnload", () => {
     doneCoords.clear();
