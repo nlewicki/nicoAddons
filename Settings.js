@@ -1,8 +1,11 @@
-import {  @ButtonProperty, @PercentSliderProperty, @CheckboxProperty, @ColorProperty, @SelectorProperty, @SwitchProperty, @Vigilant, @SliderProperty, @TextProperty, Color } from "../Vigilance"
+import {  @ButtonProperty, @PercentSliderProperty, @CheckboxProperty, @ColorProperty, @SelectorProperty, @SwitchProperty, @Vigilant, @SliderProperty, @TextProperty, @NumberProperty, Color } from "../Vigilance"
 
 @Vigilant("nicoAddons", "Nico Addons", {
     getCategoryComparator: () => (a, b) => {
-        const categories = ["General"];
+        const categories = [
+            "General",
+            "AutoSS"
+        ];
         return categories.indexOf(a.name) - categories.indexOf(b.name);
     }
 })
@@ -14,6 +17,34 @@ class Settings {
         category: "General"
     })
     auto4 = false;
+
+	@SwitchProperty({
+		name: "Toggle",
+		description: "Toggle AutoSS",
+		category: "AutoSS"
+	})
+	enabled = false;
+
+	@NumberProperty({
+		name: "Delay",
+		category: "AutoSS",
+		min: 0,
+		max: 2147483647,
+		increment: 10
+	})
+	delay = 250;
+
+	@TextProperty({
+		name: "Auto Start",
+		category: "AutoSS"
+	})
+	autoStart = "";
+
+	@SwitchProperty({
+		name: "No Rotate",
+		category: "AutoSS",
+	})
+	noRotate = false;
 
     constructor() {
 		this.initialize(this);
