@@ -1,0 +1,12 @@
+{
+  "name": "nicoAddons",
+  "creator": "nico",
+  "entry": "index.js",
+  "version": "1.0.0",
+  "requires": [
+    "BloomCore",
+    "RenderLib",
+  	"Vigilance",
+	  "PogData"
+  ]
+}
