@@ -21,15 +21,18 @@ let lastShot;
 let originalSlotIndex = -1;
 let doneCoords = new Set();
 
-function findItemInHotbar(itemId) {
-    const inventory = Player.getInventory().getItems().slice(0, 9);
-    for (let i = 0; i < inventory.length; i++) {
-        let item = inventory[i];
-        if (item && item.getID() === itemId) {
-            return i;
+function findItemInHotbar(itemName) {
+    const inventory = Player.getInventory().getItems()
+
+    inventory.forEach((item, index) => {
+        if (index > 8 || !item) return;
+        if (item.getName().removeFormatting().toLowerCase().includes(itemName)) {
+            ChatLib.chat("&eFound item in slot " + index);
+            return index;
         }
-    }
-    return -1;
+    });
+    ChatLib.chat("&eItem not found in hotbar");
+    return ;
 }
 
 let rodIndex = findItemInHotbar(346);
@@ -38,7 +41,7 @@ const isNearPlate = () => Player.getY() == 127 && Player.getX() >= 62 && Player.
 
 function swapToSlot(rodIndex) {
     const player = Player.getPlayer();
-    if (!player) return;
+    if (!player || !rodIndex) return;
 
     const inventory = player.field_71071_by;
     if (!inventory) return;
@@ -118,18 +121,24 @@ register("tick", () => {
         rightClick();
         lastShot = Date.now();
 
-        if (doneCoords.size === 5 && rodIndex !== -1) {
-            ChatLib.chat("&eStarting RodSwap: Switching to slot " + rodIndex + 1);
-            rodIndex = findItemInHotbar(346);
-            setTimeout(() => {
+        if (doneCoords.size === 5 && !rodIndex) {
+            const inventory = Player.getInventory().getItems()
+
+            inventory.forEach((item, index) => {
+            if (index > 8 || !item) return;
+            if (item.getName().removeFormatting().toLowerCase().includes('rod')) {
+                ChatLib.chat("&eFound item in slot " + index);
+                rodIndex = index;
+            }
+            });
+            ChatLib.chat("&eStarting RodSwap: Switching to slot " + rodIndex);
+            new Thread(() => {
                 swapToSlot(rodIndex);
-                setTimeout(() => {
-                    rightClick();
-                    setTimeout(() => {
-                        swapBackToOriginal();
-                    }, 100); // Delay after right-click for swapping back
-                }, 100); // Delay for item switch
-            }, 50); // Delay before switching to rod
+                Thread.sleep(100); // Delay for item switch
+                rightClick();
+                Thread.sleep(100); // Delay after right-click for swapping back
+                swapBackToOriginal();
+            }).start()
         }
     });
 });

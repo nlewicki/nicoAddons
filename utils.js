@@ -5,6 +5,7 @@ import { getPlayerEyeCoords } from "../BloomCore/utils/Utils";
 import Vector3 from "../BloomCore/utils/Vector3";
 
 export class PlayerUtils {
+
 	static getEyePos() {
 		return {
 			x: Player.getX(),
@@ -27,8 +28,8 @@ export class PlayerUtils {
 		const initialTime = new Date().getTime();
 		const trigger = register("step", () => {
 			const progress = time <= 0 ? 1 : Math.max(Math.min((new Date().getTime() - initialTime) / time, 1), 0);
-			const amount = bezier(progress, 0, 1, 1, 1);
-			rotate(initialYaw + (yaw - initialYaw) * amount, initialPitch + (pitch - initialPitch) * amount);
+			const amount = this.bezier(progress, 0, 1, 1, 1);
+			this.rotate(initialYaw + (yaw - initialYaw) * amount, initialPitch + (pitch - initialPitch) * amount);
 			if (progress >= 1) {
 				trigger.unregister();
 				if (callback) callback();
@@ -41,7 +42,7 @@ export class PlayerUtils {
 	}
 
 	static calcYawPitch(blcPos, plrPos) { //detailed calculation
-		if (!plrPos) plrPos = getEyePos();
+		if (!plrPos) plrPos = this.getEyePos();
 		let d = {
 			x: blcPos.x - plrPos.x,
 			y: blcPos.y - plrPos.y,

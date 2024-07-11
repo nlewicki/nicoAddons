@@ -18,10 +18,10 @@ register("command",() => {
 	}, 600)
 }).setName("hh");
 
-register("command", () => {
-	if (!Settings.ShortSkyBlockCommands) return
-	ChatLib.command("warp dungeon_hub");
-}).setName("d");
+//register("command", () => {
+//	if (!Settings.ShortSkyBlockCommands) return
+//	ChatLib.command("warp dungeon_hub");
+//}).setName("d");
 
 register("command", () => {
 	if (!Settings.ShortSkyBlockCommands) return

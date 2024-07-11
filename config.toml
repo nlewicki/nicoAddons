@@ -1,11 +1,17 @@
 
+[f7_devices]
+	delay = 180
+	autoss_toggle = true
+	auto4 = true
+	no_rotate = false
+	auto_start = "0,150,300"
+
+[general]
+	blood_dialogue_skip = false
+	clean_f7_titles = true
+	auto_refill_ender_pearls = true
+	short_skyblock_commands = true
+
 [auto4]
 	auto4 = true
 
-[autoss]
-	delay = 180
-	toggle = true
-	no_rotate = false
-	auto_start = ""
-	no_rotate = false
-	auto_start = "0,150,300"
