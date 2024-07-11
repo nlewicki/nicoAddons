@@ -4,6 +4,7 @@ import {  @ButtonProperty, @PercentSliderProperty, @CheckboxProperty, @ColorProp
     getCategoryComparator: () => (a, b) => {
         const categories = [
 			"General",
+			"F7 Devices";
             "Auto4",
             "AutoSS"
         ];
@@ -43,20 +44,20 @@ class Settings {
     @SwitchProperty({
         name: "Auto4",
         description: "Toggle Auto4 feature on or off",
-        category: "Auto4"
+        category: "F7 Devices"
     })
     auto4 = false;
 
 	@SwitchProperty({
-		name: "Toggle",
+		name: "AutoSS Toggle",
 		description: "Toggle AutoSS",
-		category: "AutoSS"
+		category: "F7 Devices",
 	})
 	enabled = false;
 
 	@NumberProperty({
 		name: "Delay",
-		category: "AutoSS",
+		category: "F7 Devices",
 		min: 0,
 		max: 2147483647,
 		increment: 10
@@ -65,18 +66,21 @@ class Settings {
 
 	@TextProperty({
 		name: "Auto Start",
-		category: "AutoSS"
+		category: "F7 Devices"
 	})
 	autoStart = "";
 
 	@SwitchProperty({
 		name: "No Rotate",
-		category: "AutoSS",
+		category: "F7 Devices",
 	})
 	noRotate = false;
 
     constructor() {
 		this.initialize(this);
+		this.addDependency("Delay", "AutoSS Toggle");
+		this.addDependency("Auto Start", "AutoSS Toggle");
+		this.addDependency("No Rotate", "AutoSS Toggle");
 	}
 }
 
