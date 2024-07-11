@@ -4,7 +4,7 @@ import {  @ButtonProperty, @PercentSliderProperty, @CheckboxProperty, @ColorProp
     getCategoryComparator: () => (a, b) => {
         const categories = [
 			"General",
-			"F7 Devices";
+			"F7 Devices",
             "Auto4",
             "AutoSS"
         ];
