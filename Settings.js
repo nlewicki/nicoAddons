@@ -79,8 +79,8 @@ class Settings {
     constructor() {
 		this.initialize(this);
 		this.addDependency("Delay", "AutoSS Toggle");
-		this.addDependency("Auto Start", "AutoSS Toggle");
-		this.addDependency("No Rotate", "AutoSS Toggle");
+		this.addDependency("Auto Start", "AutoSS Toggle")
+		this.addDependency("No Rotate", "AutoSS Toggle")
 	}
 }
 

@@ -1,8 +1,8 @@
 /// <reference types="../CTAutocomplete" />
 /// <reference lib="es2015" />
 
-import { getPlayerEyeCoords } from "../../BloomCore/utils/Utils";
-import Vector3 from "../../BloomCore/utils/Vector3";
+import { getPlayerEyeCoords } from "../BloomCore/utils/Utils";
+import Vector3 from "../BloomCore/utils/Vector3";
 
 export class PlayerUtils {
 	static getEyePos() {
