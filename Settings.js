@@ -15,7 +15,7 @@ import {  @ButtonProperty, @PercentSliderProperty, @CheckboxProperty, @ColorProp
 class Settings {
 	@SwitchProperty({
 		name: "Short SkyBlock Commands",
-		description: "Enables a list of useful &dshort&r version of &bsky&dblock's &bcommands&r (type /ssbc for help)",
+		description: "Enables a list of useful short version of skyblock's commands (type /ssbc for help)",
 		category: "General"
 	})
 	ShortSkyBlockCommands = false;
