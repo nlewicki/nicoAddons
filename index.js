@@ -4,6 +4,8 @@ import Settings from "./Settings";
 import "./Features/Auto4";
 import "./Features/autoss";
 import "./Features/AutoRefillEnderPearls";
+import "./Features/NewF7Titles";
+import "./Features/BloodDialougeSkip";
+import "./Features/ShortSkyBlockCommands";
 
 register("command", () => Settings.openGUI()).setName("na");
-register("command", Settings.openGUI).setName("simonshutup").setAliases("autoss");

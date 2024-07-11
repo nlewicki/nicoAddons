@@ -9,6 +9,3 @@
 	auto_start = ""
 	no_rotate = false
 	auto_start = "0,150,300"
-
-[autorefillenderpearls]
-	autorefillenderpearls = false

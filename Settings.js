@@ -13,8 +13,29 @@ import {  @ButtonProperty, @PercentSliderProperty, @CheckboxProperty, @ColorProp
 
 class Settings {
 	@SwitchProperty({
+		name: "Short SkyBlock Commands",
+		description: "Enables a list of useful &dshort&r version of &bsky&dblock's &bcommands&r (type /ssbc for help)",
+		category: "General"
+	})
+	ShortSkyBlockCommands = false;
+
+	@SwitchProperty({
+		name: "Blood Dialogue Skip",
+		description: "Makes a timer for 24 seconds after you open the blood room",
+		category: "General"
+	})
+	BloodDialougeSkip = false;
+
+	@SwitchProperty({
+		name: "Clean F7 titles",
+		description: "Makes Terminal and Crystal titles clean",
+		category: "General"
+	})
+	CleanTitles = false;
+
+	@SwitchProperty({
 		name: "Auto refill Ender Pearls",
-		description: "Auto refills enderpearls at start oft he dungeon",
+		description: "Auto refills enderpearls at start of the dungeon",
 		category: "General"
 	})
 	AutoRefillEnderPearls = false;
