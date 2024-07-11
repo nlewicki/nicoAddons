@@ -1,6 +1,7 @@
 /// <reference types="../../CTAutocomplete" />
 
 import Settings from "../Settings";
+import { PlayerUtils } from "./utils";
 import { getPlayerEyeCoords } from "../../BloomCore/utils/Utils";
 import Vector3 from "../../BloomCore/utils/Vector3";
 import * as packetChat from "../events/packetChat";
@@ -156,12 +157,6 @@ function isAtSS() {
 	return new Vector3(108.5, 120, 94).subtract(new Vector3(Player.getX(), Player.getY(), Player.getZ())).getLength() < 1;
 }
 
-function rotate(yaw, pitch) {
-	const player = Player.getPlayer();
-	player.field_70177_z = yaw;
-	player.field_70125_A = pitch;
-}
-
 function getPlayerYaw() {
 	return Player.getYaw();
 }
@@ -178,8 +173,8 @@ function rotateSmoothly(yaw, pitch, time) {
 	const initialTime = new Date().getTime();
 	const trigger = register("step", () => {
 		const progress = time <= 0 ? 1 : Math.max(Math.min((new Date().getTime() - initialTime) / time, 1), 0);
-		const amount = bezier(progress, 0, 1, 1, 1);
-		rotate(initialYaw + (yaw - initialYaw) * amount, initialPitch + (pitch - initialPitch) * amount);
+		const amount = PlayerUtils.bezier(progress, 0, 1, 1, 1);
+		PlayerUtils.rotate(initialYaw + (yaw - initialYaw) * amount, initialPitch + (pitch - initialPitch) * amount);
 		if (progress >= 1) trigger.unregister();
 	});
 }
@@ -187,10 +182,6 @@ function rotateSmoothly(yaw, pitch, time) {
 function getYawPitch(x, y, z) {
 	const difference = new Vector3(x, y, z).subtract(new Vector3(...getPlayerEyeCoords()));
 	return [difference.getYaw(), difference.getPitch()];
-}
-
-function bezier(t, initial, p1, p2, final) {
-	return (1 - t) * (1 - t) * (1 - t) * initial + 3 * (1 - t) * (1 - t) * t * p1 + 3 * (1 - t) * t * t * p2 + t * t * t * final;
 }
 
 function clickBtn(x, y, z) {

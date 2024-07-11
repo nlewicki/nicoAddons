@@ -1,4 +1,5 @@
 import Settings from "../Settings";
+import { PlayerUtils } from "./utils";
 
 // add dauerschiesen und erst weiter rotieren wenn geschossen wurde
 
@@ -59,71 +60,10 @@ function swapBackToOriginal() {
     originalSlotIndex = -1;
 }
 
-function ItemIsInHotbar(itemId) {
-    return findItemInHotbar(itemId) !== -1
-}
-
 export function rightClick() {
     const rightClickMethod = Client.getMinecraft().getClass().getDeclaredMethod("func_147121_ag", null);
     rightClickMethod.setAccessible(true);
     rightClickMethod.invoke(Client.getMinecraft(), null);
-}
-
-export function getEyePos() {
-    return {
-        x: Player.getX(),
-        y: Player.getY() + Player.getPlayer().func_70047_e(),
-        z: Player.getZ()
-    };
-}
-
-function rotate(yaw, pitch) {
-    const player = Player.getPlayer();
-    player.field_70177_z = yaw;
-    player.field_70125_A = pitch;
-}
-
-function rotateSmoothly(yaw, pitch, time, callback) {
-    while (yaw >= 180) yaw -= 360;
-    while (pitch >= 180) pitch -= 360;
-    const initialYaw = Player.getYaw();
-    const initialPitch = Player.getPitch();
-    const initialTime = new Date().getTime();
-    const trigger = register("step", () => {
-        const progress = time <= 0 ? 1 : Math.max(Math.min((new Date().getTime() - initialTime) / time, 1), 0);
-        const amount = bezier(progress, 0, 1, 1, 1);
-        rotate(initialYaw + (yaw - initialYaw) * amount, initialPitch + (pitch - initialPitch) * amount);
-        if (progress >= 1) {
-            trigger.unregister();
-            if (callback) callback();
-        }
-    });
-}
-
-function bezier(t, initial, p1, p2, final) {
-    return (1 - t) * (1 - t) * (1 - t) * initial + 3 * (1 - t) * (1 - t) * t * p1 + 3 * (1 - t) * t * t * p2 + t * t * t * final;
-}
-
-export function calcYawPitch(blcPos, plrPos) {
-    if (!plrPos) plrPos = getEyePos();
-    let d = {
-        x: blcPos.x - plrPos.x,
-        y: blcPos.y - plrPos.y,
-        z: blcPos.z - plrPos.z
-    };
-    let yaw = 0;
-    let pitch = 0;
-    if (d.x != 0) {
-        if (d.x < 0) { yaw = 1.5 * Math.PI; } else { yaw = 0.5 * Math.PI; }
-        yaw = yaw - Math.atan(d.z / d.x);
-    } else if (d.z < 0) { yaw = Math.PI; }
-    d.xz = Math.sqrt(Math.pow(d.x, 2) + Math.pow(d.z, 2));
-    pitch = -Math.atan(d.y / d.xz);
-    yaw = -yaw * 180 / Math.PI;
-    pitch = pitch * 180 / Math.PI;
-    if (pitch < -90 || pitch > 90 || isNaN(yaw) || isNaN(pitch) || yaw == null || pitch == null || yaw == undefined || pitch == null) return;
-
-    return [yaw, pitch];
 }
 
 const getBowShootSpeed = () => {
@@ -170,9 +110,9 @@ register("tick", () => {
         xdiff = 1.3;
     }
 
-    let [yaw, pitch] = calcYawPitch({ x: emeraldLocation.x + xdiff, y: emeraldLocation.y + 1.1, z: emeraldLocation.z });
+    let [yaw, pitch] = PlayerUtils.calcYawPitch({ x: emeraldLocation.x + xdiff, y: emeraldLocation.y + 1.1, z: emeraldLocation.z });
 
-    rotateSmoothly(yaw, pitch, 250, () => {
+    PlayerUtils.rotateSmoothly(yaw, pitch, 250, () => {
         rightClick();
         lastShot = Date.now();
 
@@ -195,7 +135,7 @@ register("tick", () => {
 register("command", () => {
     ChatLib.chat("&ereseting Auto4");
     doneCoords.clear();
-} ).setName("re");   
+} ).setName("re");
 
 register("worldUnload", () => {
     doneCoords.clear();
