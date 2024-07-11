@@ -1,15 +1,14 @@
 
-[general]
+[auto4]
 	auto4 = true
-	rod_slot = "5"
 
 [autoss]
 	delay = 180
 	toggle = true
 	no_rotate = false
 	auto_start = ""
-
-[extras]
 	no_rotate = false
 	auto_start = "0,150,300"
 
+[autorefillenderpearls]
+	autorefillenderpearls = false

@@ -1,5 +1,7 @@
+/// <reference types="../../CTAutocomplete" />
+
 import Settings from "../Settings";
-import { PlayerUtils } from "./utils";
+import { PlayerUtils } from "../utils";
 
 // add dauerschiesen und erst weiter rotieren wenn geschossen wurde
 

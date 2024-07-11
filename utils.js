@@ -1,4 +1,10 @@
-class PlayerUtils {
+/// <reference types="../CTAutocomplete" />
+/// <reference lib="es2015" />
+
+import { getPlayerEyeCoords } from "../../BloomCore/utils/Utils";
+import Vector3 from "../../BloomCore/utils/Vector3";
+
+export class PlayerUtils {
 	static getEyePos() {
 		return {
 			x: Player.getX(),
@@ -34,7 +40,7 @@ class PlayerUtils {
 		return (1 - t) * (1 - t) * (1 - t) * initial + 3 * (1 - t) * (1 - t) * t * p1 + 3 * (1 - t) * t * t * p2 + t * t * t * final;
 	}
 
-	static calcYawPitch(blcPos, plrPos) {
+	static calcYawPitch(blcPos, plrPos) { //detailed calculation
 		if (!plrPos) plrPos = getEyePos();
 		let d = {
 			x: blcPos.x - plrPos.x,
@@ -54,5 +60,10 @@ class PlayerUtils {
 		if (pitch < -90 || pitch > 90 || isNaN(yaw) || isNaN(pitch) || yaw == null || pitch == null || yaw == undefined || pitch == null) return;
 
 		return [yaw, pitch];
+	}
+
+	static getYawPitch(x, y, z) { //simpler calculation => same result
+		const difference = new Vector3(x, y, z).subtract(new Vector3(...getPlayerEyeCoords()));
+		return [difference.getYaw(), difference.getPitch()];
 	}
 }

@@ -1,7 +1,7 @@
 /// <reference types="../../CTAutocomplete" />
 
 import Settings from "../Settings";
-import { PlayerUtils } from "./utils";
+import { PlayerUtils } from "../utils";
 import { getPlayerEyeCoords } from "../../BloomCore/utils/Utils";
 import Vector3 from "../../BloomCore/utils/Vector3";
 import * as packetChat from "../events/packetChat";
@@ -37,7 +37,7 @@ packetChat.addListener(message => {
 			}
 			autoStart.forEach(delay => {
 				setTimeout(() => {
-					let startButtonYawPitch = getYawPitch(...startButtonExact);
+					let startButtonYawPitch = PlayerUtils.getYawPitch(...startButtonExact);
 					if (isAtSS() && (Settings.noRotate || (Math.abs(getPlayerYaw() - startButtonYawPitch[0]) < 5 && Math.abs(getPlayerPitch() - startButtonYawPitch[1]) < 5))) {
 						clickBtn(...startButton);
 					}
@@ -78,7 +78,7 @@ register("command", () => {
 		}
 		autoStart.forEach(delay => {
 			setTimeout(() => {
-				let startButtonYawPitch = getYawPitch(...startButtonExact);
+				let startButtonYawPitch = PlayerUtils.getYawPitch(...startButtonExact);
 				if (isAtSS() && (Settings.noRotate || (Math.abs(getPlayerYaw() - startButtonYawPitch[0]) < 5 && Math.abs(getPlayerPitch() - startButtonYawPitch[1]) < 5))) {
 					clickBtn(...startButton);
 				}
@@ -126,7 +126,7 @@ function auto() {
 		for (let i = 0; i < solution.length; ++i) {
 			let buttonIndex = solution[i];
 			let stupid = buttonsExact[buttonIndex];
-			let stupid2 = getYawPitch(...stupid);
+			let stupid2 = PlayerUtils.getYawPitch(...stupid);
 			let pos = buttons[buttonIndex];
 			if (i !== 0 || (!Settings.noRotate && (Math.abs(getPlayerYaw() - stupid2[0]) > 0.01 || Math.abs(getPlayerPitch() - stupid2[1]) > 0.01))) {
 				if (!Settings.noRotate) rotateSmoothly(...stupid2, Settings.delay);
@@ -142,7 +142,7 @@ function auto() {
 		if (solution.length < 5) {
 			const buttonIndex = solution[0];
 			const stupid = buttonsExact[buttonIndex];
-			const stupid2 = getYawPitch(...stupid);
+			const stupid2 = PlayerUtils.getYawPitch(...stupid);
 			if (!Settings.noRotate) rotateSmoothly(...stupid2, Settings.delay);
 		}
 	}).start();
@@ -177,11 +177,6 @@ function rotateSmoothly(yaw, pitch, time) {
 		PlayerUtils.rotate(initialYaw + (yaw - initialYaw) * amount, initialPitch + (pitch - initialPitch) * amount);
 		if (progress >= 1) trigger.unregister();
 	});
-}
-
-function getYawPitch(x, y, z) {
-	const difference = new Vector3(x, y, z).subtract(new Vector3(...getPlayerEyeCoords()));
-	return [difference.getYaw(), difference.getPitch()];
 }
 
 function clickBtn(x, y, z) {

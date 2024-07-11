@@ -3,7 +3,8 @@ import {  @ButtonProperty, @PercentSliderProperty, @CheckboxProperty, @ColorProp
 @Vigilant("nicoAddons", "Nico Addons", {
     getCategoryComparator: () => (a, b) => {
         const categories = [
-            "General",
+			"General",
+            "Auto4",
             "AutoSS"
         ];
         return categories.indexOf(a.name) - categories.indexOf(b.name);
@@ -11,10 +12,17 @@ import {  @ButtonProperty, @PercentSliderProperty, @CheckboxProperty, @ColorProp
 })
 
 class Settings {
+	@SwitchProperty({
+		name: "Auto refill Ender Pearls",
+		description: "Auto refills enderpearls at start oft he dungeon",
+		category: "General"
+	})
+	AutoRefillEnderPearls = false;
+
     @SwitchProperty({
         name: "Auto4",
         description: "Toggle Auto4 feature on or off",
-        category: "General"
+        category: "Auto4"
     })
     auto4 = false;
 
