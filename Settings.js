@@ -14,6 +14,13 @@ import {  @ButtonProperty, @PercentSliderProperty, @CheckboxProperty, @ColorProp
 
 class Settings {
 	@SwitchProperty({
+		name: "Reaper Armor Swap",
+		description: "Automaticaly swaps to reaper armor, sneaks and swaps back for you",
+		category: "General"
+	})
+	ReaperSwap = false;
+
+	@SwitchProperty({
 		name: "Short SkyBlock Commands",
 		description: "Enables a list of useful short version of skyblock's commands (type /ssbc for help)",
 		category: "General"
@@ -28,7 +35,7 @@ class Settings {
 	BloodDialougeSkip = false;
 
 	@SwitchProperty({
-		name: "Clean F7 titles",
+		name: "Clean F7 Titles",
 		description: "Makes Terminal and Crystal titles clean",
 		category: "General"
 	})

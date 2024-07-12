@@ -68,3 +68,22 @@ export class PlayerUtils {
 		return [difference.getYaw(), difference.getPitch()];
 	}
 }
+
+/**
+ * Registers and unregisters the trigger depending on the result of the checkFunc. Use with render triggers to reduce lag when they are not being used.
+ * @param {() => void} trigger
+ * @param {Function} checkFunc
+ * @returns
+ */
+const checkingTriggers = []
+export function registerWhen(trigger, checkFunc) {
+  checkingTriggers.push([trigger.unregister(), checkFunc])
+}
+
+register("renderOverlay", () => {
+  for (let i = 0; i < checkingTriggers.length; i++) {
+    let [trigger, func] = checkingTriggers[i]
+    if (func()) trigger.register()
+    else trigger.unregister()
+  }
+})
