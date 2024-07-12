@@ -32,7 +32,7 @@ function findItemInHotbar(itemName) {
         }
     });
     ChatLib.chat("&eItem not found in hotbar");
-    return ;
+    return -1;
 }
 
 let rodIndex = findItemInHotbar(346);
@@ -120,8 +120,9 @@ register("tick", () => {
     PlayerUtils.rotateSmoothly(yaw, pitch, 250, () => {
         rightClick();
         lastShot = Date.now();
-
-        if (doneCoords.size === 5 && !rodIndex) {
+        ChatLib.chat("rodIndex: " + rodIndex);
+        rodIndex = findItemInHotbar(346);
+        if (doneCoords.size === 5 && rodIndex === -1) {
             const inventory = Player.getInventory().getItems()
 
             inventory.forEach((item, index) => {
@@ -131,6 +132,10 @@ register("tick", () => {
                 rodIndex = index;
             }
             });
+            if (rodIndex === -1) {
+                ChatLib.chat("&eNo rod found in hotbar");
+                return;
+            }
             ChatLib.chat("&eStarting RodSwap: Switching to slot " + rodIndex);
             new Thread(() => {
                 swapToSlot(rodIndex);
