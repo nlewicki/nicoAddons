@@ -59,13 +59,13 @@ class Settings {
     @SwitchProperty({
         name: "Auto4",
         description: "Toggle Auto4 feature on or off",
-        category: "F7 Devices"
+        category: "F7 Devices (pretty slow) DONT USE"
     })
     auto4 = false;
 
 	@SwitchProperty({
 		name: "AutoSS Toggle",
-		description: "Toggle AutoSS (breaks sometimes)",
+		description: "Toggle AutoSS (breaks sometimes) DONT USE",
 		category: "F7 Devices",
 	})
 	enabled = false;

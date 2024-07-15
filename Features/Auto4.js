@@ -35,7 +35,7 @@ function findItemInHotbar(itemName) {
     return -1;
 }
 
-let rodIndex = findItemInHotbar(346);
+let rodIndex = -1;
 
 const isNearPlate = () => Player.getY() == 127 && Player.getX() >= 62 && Player.getX() <= 65 && Player.getZ() >= 34 && Player.getZ() <= 37;
 

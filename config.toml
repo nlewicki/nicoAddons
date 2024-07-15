@@ -17,6 +17,6 @@
 	auto4 = true
 
 [wip]
-	reaper_armor_swap = false
-	auto_potion = false
+	reaper_armor_swap = true
+	auto_potion = true
 
