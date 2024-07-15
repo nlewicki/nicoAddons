@@ -1,6 +1,6 @@
 /// <reference types="../../CTAutocomplete" />
 /// <reference lib="es2015" />
-
+/*
 import Settings from "../Settings";
 import { registerWhen } from "../utils";
 
@@ -79,3 +79,4 @@ register(`chat`, (e) => {
 	registerWhen(keyTrigger2, () => Settings.WardrobeHelper)
 
 }).setChatCriteria("[BOSS] I no longer wish to fight, but I know that will not stop you.")
+*/

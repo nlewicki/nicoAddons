@@ -31,7 +31,7 @@ function findItemInHotbar(itemName) {
             return index;
         }
     });
-    ChatLib.chat("&eItem not found in hotbar");
+    //ChatLib.chat("&eItem not found in hotbar");
     return -1;
 }
 
@@ -120,7 +120,7 @@ register("tick", () => {
     PlayerUtils.rotateSmoothly(yaw, pitch, 250, () => {
         rightClick();
         lastShot = Date.now();
-        ChatLib.chat("rodIndex: " + rodIndex);
+        //ChatLib.chat("rodIndex: " + rodIndex);
         rodIndex = findItemInHotbar(346);
         if (doneCoords.size === 5 && rodIndex === -1) {
             const inventory = Player.getInventory().getItems()
@@ -133,7 +133,7 @@ register("tick", () => {
             }
             });
             if (rodIndex === -1) {
-                ChatLib.chat("&eNo rod found in hotbar");
+                //ChatLib.chat("&eNo rod found in hotbar");
                 return;
             }
             ChatLib.chat("&eStarting RodSwap: Switching to slot " + rodIndex);

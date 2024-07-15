@@ -1,5 +1,5 @@
 /// <reference types="../../CTAutocomplete" />
-
+/*
 import Settings from "../Settings";
 import { PlayerUtils } from "../utils";
 import { getPlayerEyeCoords } from "../../BloomCore/utils/Utils";
@@ -126,7 +126,7 @@ function auto() {
 		for (let i = 0; i < solution.length; ++i) {
 			let buttonIndex = solution[i];
 			let stupid = buttonsExact[buttonIndex];
-			let stupid2 = PlayerUtils.getYawPitch(...stupid);
+			let stupid2 = getYawPitch(...stupid);
 			let pos = buttons[buttonIndex];
 			if (i !== 0 || (!Settings.noRotate && (Math.abs(getPlayerYaw() - stupid2[0]) > 0.01 || Math.abs(getPlayerPitch() - stupid2[1]) > 0.01))) {
 				if (!Settings.noRotate) rotateSmoothly(...stupid2, Settings.delay);
@@ -142,7 +142,7 @@ function auto() {
 		if (solution.length < 5) {
 			const buttonIndex = solution[0];
 			const stupid = buttonsExact[buttonIndex];
-			const stupid2 = PlayerUtils.getYawPitch(...stupid);
+			const stupid2 = getYawPitch(...stupid);
 			if (!Settings.noRotate) rotateSmoothly(...stupid2, Settings.delay);
 		}
 	}).start();
@@ -165,6 +165,11 @@ function getPlayerPitch() {
 	return Player.getPitch();
 }
 
+function getYawPitch(x, y, z) { //simpler calculation => same result
+	const difference = new Vector3(x, y, z).subtract(new Vector3(...getPlayerEyeCoords()));
+	return [difference.getYaw(), difference.getPitch()];
+}
+
 function rotateSmoothly(yaw, pitch, time) {
 	while (yaw >= 180) yaw -= 360;
 	while (pitch >= 180) pitch -= 360;
@@ -183,3 +188,4 @@ function clickBtn(x, y, z) {
 	Client.sendPacket(new C08PacketPlayerBlockPlacement(new MCBlockPos(x, y, z), 4, Player.getHeldItem()?.getItemStack(), 0.875, 0.5, 0.5));
 	if (!Player.isSneaking()) Client.sendPacket(new C0APacketAnimation());
 }
+*/

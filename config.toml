@@ -1,12 +1,13 @@
 
 [f7_devices]
 	delay = 180
-	autoss_toggle = true
+	autoss_toggle = false
 	auto4 = true
 	no_rotate = false
-	auto_start = "0,150,300"
+	auto_start = ""
 
 [general]
+	reaper_armor_swap = false
 	blood_dialogue_skip = false
 	clean_f7_titles = true
 	auto_refill_ender_pearls = true
@@ -14,4 +15,8 @@
 
 [auto4]
 	auto4 = true
+
+[wip]
+	reaper_armor_swap = false
+	auto_potion = false
 
