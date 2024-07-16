@@ -42,6 +42,26 @@ class Settings {
 	})
 	ReaperSwap = false;
 
+	@SliderProperty({
+		name: "Reaper Armor Slot",
+		description: "The slot of the reaper armor",
+		category: "WIP",
+		min: 1,
+		max: 9,
+		increment: 1
+	})
+	ReaperArmorSlot = 1;
+
+	@SliderProperty({
+		name: "Necron Armor Slot",
+		description: "The slot of the necron armor",
+		category: "WIP",
+		min: 1,
+		max: 9,
+		increment: 1
+	})
+	NecronArmorSlot = 1;
+
 	@SwitchProperty({
 		name: "&bShort SkyBlock Commands",
 		description: "Enables a list of useful short version of skyblock's commands (type /ssbc for help)",
@@ -111,6 +131,8 @@ class Settings {
 		this.addDependency("Auto Start", "AutoSS Toggle")
 		this.addDependency("No Rotate", "AutoSS Toggle")
 		this.addDependency("Auto Twilight Command", "&5Auto Twilight")
+		this.addDependency("Reaper Armor Slot", "Reaper Armor Swap")
+		this.addDependency("Necron Armor Slot", "Reaper Armor Swap")
 	}
 }
 

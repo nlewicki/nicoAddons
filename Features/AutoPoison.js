@@ -2,7 +2,7 @@
 /// <reference lib="es2015" />
 
 import Settings from "../Settings"
-import { ModMessage, PreGuiRenderEvent, registerWhen } from "../utils"
+import { ModMessage, PreGuiRenderEvent, registerWhen, getClass } from "../utils"
 
 const CancelGUIRendering = register(PreGuiRenderEvent, event => {
     cancel(event)
@@ -40,12 +40,16 @@ function checkPotionBag(Container) {
 
 registerWhen(register("chat", () => {
     // if (!Settings.AutoPoison) return
-
+    
     const inventory = Player.getInventory()
     const poisonInInv = inventory.indexOf(351)
+    let PlyerClass = getClass(Player.getName()).toLocaleLowerCase().removeFormatting()
 
-    if (poisonInInv !== -1) {
-        ModMessage("&aPoison in inventory")
+    if (poisonInInv !== -1 || !PlayerClass.includes('tank') || !PlayerClass.includes('healer')) {
+        if (poisonInInv !== -1) {
+            ModMessage("&aPoison in inventory")
+            return
+        }
         return
     }
 

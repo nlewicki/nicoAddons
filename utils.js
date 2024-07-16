@@ -98,3 +98,16 @@ register("renderOverlay", () => {
 export function ModMessage(string) {
 	ChatLib.chat(`${prefix} ${string}`)
   }
+
+/**
+ * Retrieves the class of a player based on their name from the tab list.
+ * @param {string} Name - The name of the player.
+ * @returns {string} The class of the player or "EMPTY" if not found.
+ */
+export function getClass(Name) {
+	let index = TabList?.getNames()?.findIndex(line => line?.includes(Name))
+	if (index == -1) return
+	let match = TabList?.getNames()[index]?.removeFormatting().match(/.+ \((.+) .+\)/)
+	if (!match) return "EMPTY"
+	return match[1];
+  }
