@@ -79,7 +79,7 @@ class Settings {
 
 	@SwitchProperty({
 		name: "AutoSS Toggle",
-		description: "Toggle AutoSS (breaks sometimes) DONT USE",
+		description: "removed. use simonshutup",
 		category: "F7 Devices",
 	})
 	enabled = false;

@@ -1,7 +1,7 @@
 
 [f7_devices]
 	delay = 180
-	autoss_toggle = false
+	autoss_toggle = true
 	auto4 = true
 	auto4_toggle = false
 	no_rotate = false
