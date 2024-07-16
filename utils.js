@@ -4,6 +4,9 @@
 import { getPlayerEyeCoords } from "../BloomCore/utils/Utils";
 import Vector3 from "../BloomCore/utils/Vector3";
 
+export const PreGuiRenderEvent = net.minecraftforge.client.event.GuiScreenEvent.DrawScreenEvent.Pre
+export const prefix = "§6§l[§b§lNA§6§l]§r"
+
 export class PlayerUtils {
 
 	static getEyePos() {
@@ -87,3 +90,11 @@ register("renderOverlay", () => {
     else trigger.unregister()
   }
 })
+
+/**
+ * Sends a mod message to the chat with a prefix.
+ * @param {string} string - The message to be sent to the chat.
+ */
+export function ModMessage(string) {
+	ChatLib.chat(`${prefix} ${string}`)
+  }

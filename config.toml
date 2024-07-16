@@ -3,24 +3,35 @@
 	delay = 180
 	autoss_toggle = false
 	auto4 = true
+	auto4_toggle = false
 	no_rotate = false
 	auto_start = ""
 
 [general]
-<<<<<<< HEAD
 	reaper_armor_swap = true
-=======
-	reaper_armor_swap = false
->>>>>>> b2505fff85ca40c9740a1be141f5baa26b038b82
+	auto_twilight_command = "ec 1"
 	blood_dialogue_skip = false
 	clean_f7_titles = true
+	"&5auto_twilight_command" = "ec 1"
+	"&cclean_&ff7_&atitles" = false
+	"&ablood_dialogue_skip" = false
+	"&a[&cclean_&ff7_&atitles]" = false
+	auto_twilight = true
+	"&2auto_refill_ender_pearls" = false
+	"&dauto_potion" = true
+	"&cblood_dialogue_skip" = false
+	"&bshort_skyblock_commands" = false
 	auto_refill_ender_pearls = true
 	short_skyblock_commands = true
+	auto_potion = true
+	"&5auto_twilight" = false
+	"&a(&cclean_&ff7_&atitles)" = false
 
 [auto4]
 	auto4 = true
 
 [wip]
 	reaper_armor_swap = true
+	auto_poison = "ec 1"
 	auto_potion = true
 

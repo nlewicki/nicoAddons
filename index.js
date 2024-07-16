@@ -9,6 +9,7 @@ import "./Features/BloodDialougeSkip";
 import "./Features/ShortSkyBlockCommands";
 import "./Features/ReaperSwap";
 import "./Features/AutoPotion";
+import "./Features/AutoPoison";
 import "./helper";
 
 register("command", () => Settings.openGUI()).setName("na");

@@ -15,9 +15,23 @@ import {  @ButtonProperty, @PercentSliderProperty, @CheckboxProperty, @ColorProp
 
 class Settings {
 	@SwitchProperty({
-		name: "Auto Potion",
+		name: "&5Auto Twilight",
+		description: "takes out arrow poison at the start of p5",
+		category: "General"
+	})
+	AutoPoison = true;
+
+	@TextProperty({
+		name: "Auto Twilight Command",
+		description: "The command to run to get the twilights. without the '/'\nExample: \nbp 4 -> opens the 4th backpack\nec 1 -> opens the 1st enderchest",
+		category: "General"
+	})
+	PoisonSlot = "ec 1";
+
+	@SwitchProperty({
+		name: "&dAuto Potion",
 		description: "takes out a potion at the start of the dungeon",
-		category: "WIP"
+		category: "General"
 	})
 	AutoPotion = false;
 
@@ -29,37 +43,37 @@ class Settings {
 	ReaperSwap = false;
 
 	@SwitchProperty({
-		name: "Short SkyBlock Commands",
+		name: "&bShort SkyBlock Commands",
 		description: "Enables a list of useful short version of skyblock's commands (type /ssbc for help)",
 		category: "General"
 	})
 	ShortSkyBlockCommands = false;
 
 	@SwitchProperty({
-		name: "Blood Dialogue Skip",
+		name: "&cBlood Dialogue Skip",
 		description: "Makes a timer for 24 seconds after you open the blood room",
 		category: "General"
 	})
 	BloodDialougeSkip = false;
 
 	@SwitchProperty({
-		name: "Clean F7 Titles",
+		name: "&a[&cClean &fF7 &aTitles]",
 		description: "Makes Terminal and Crystal titles clean",
 		category: "General"
 	})
 	CleanTitles = false;
 
 	@SwitchProperty({
-		name: "Auto refill Ender Pearls",
+		name: "&2Auto refill Ender Pearls",
 		description: "Auto refills enderpearls at start of the dungeon",
 		category: "General"
 	})
 	AutoRefillEnderPearls = false;
 
     @SwitchProperty({
-        name: "Auto4",
-        description: "Toggle Auto4 feature on or off",
-        category: "F7 Devices (pretty slow) DONT USE"
+        name: "Auto4 Toggle",
+        description: "Toggle Auto4 feature on or off  (pretty slow) DONT USE",
+        category: "F7 Devices"
     })
     auto4 = false;
 
@@ -96,6 +110,7 @@ class Settings {
 		this.addDependency("Delay", "AutoSS Toggle");
 		this.addDependency("Auto Start", "AutoSS Toggle")
 		this.addDependency("No Rotate", "AutoSS Toggle")
+		this.addDependency("Auto Twilight Command", "&5Auto Twilight")
 	}
 }
 
