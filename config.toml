@@ -4,10 +4,14 @@
 	autoss_toggle = false
 	auto4 = true
 	no_rotate = false
-	auto_start = "0,150,300"
+	auto_start = ""
 
 [general]
+<<<<<<< HEAD
 	reaper_armor_swap = true
+=======
+	reaper_armor_swap = false
+>>>>>>> b2505fff85ca40c9740a1be141f5baa26b038b82
 	blood_dialogue_skip = false
 	clean_f7_titles = true
 	auto_refill_ender_pearls = true
@@ -15,4 +19,8 @@
 
 [auto4]
 	auto4 = true
+
+[wip]
+	reaper_armor_swap = true
+	auto_potion = true
 
