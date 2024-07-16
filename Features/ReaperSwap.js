@@ -11,7 +11,7 @@ register(`chat`, (e) => {
 	let Reaperequiped = false;
 	let NecronIndex = -1;
 	ChatLib.command("wd")
-
+	ChatLib.chat("opened wardrobe")
 	const keyTrigger = register("guiKey", (char, key, gui, event) => {
 		const Container = Player.getContainer()
 		if (!Container) return
@@ -19,10 +19,11 @@ register(`chat`, (e) => {
 		if (key == 1 || key == 18) return Player.getPlayer().func_71053_j()
 
 		cancel(event);
-
+		ChatLib.chat("looking for reaper armor")
 		const inventory = Player.getInventory().getItems()
 
 		inventory.forEach((item, index) => {
+			ChatLib.chat("checking slot ")
 			if (index < 27 || index > 35 || !item) return;
 			if (item.getName().removeFormatting().toLowerCase().includes('maxor')) {
 				ChatLib.chat("&eFound Reaper Armor in slot " + index);
