@@ -19,6 +19,9 @@ import { registerWhen, ModMessage, PreGuiRenderEvent} from "../utils";
 // 	}
 // });
 
+
+const sneakKey = new KeyBind(Client.getMinecraft().field_71474_y.field_74311_E)
+
 const CancelGUIRendering = register(PreGuiRenderEvent, event => {
     cancel(event)
 
@@ -32,18 +35,24 @@ const CancelGUIRendering = register(PreGuiRenderEvent, event => {
 
 function checkWardrope(Container, slotIndex, message) {
     if (!Container) return
-    
-    //const slotCount = Container.getSize() - 36
 
-	Container.click(slotIndex + 35, false, "LEFT")
-
-	new Thread(() => {
-		Thread.sleep(200)
-		Player.getPlayer().func_71053_j()
-		CancelGUIRendering.unregister()
-	}).start()
+    new Thread(() => {
+        Container.click(slotIndex + 35, false, "LEFT")
+        Thread.sleep(200)
+        Player.getPlayer().func_71053_j()
+        Thread.sleep(200)
+        sneakKey.setState(true)
+        Thread.sleep(100)
+        sneakKey.setState(false)
+        ChatLib.command("wd")
+        Thread.sleep(500)
+		Container = Player.getContainer()
+        Container.click(Settings.NecronArmorSlot + 35, false, "LEFT")
+        Thread.sleep(200)
+        Player.getPlayer().func_71053_j()
+        CancelGUIRendering.unregister()
+    }).start()
 	return 
-    // ModMessage(message)
 }
 
 registerWhen(register(`chat`, (e) => {
@@ -51,22 +60,9 @@ registerWhen(register(`chat`, (e) => {
 	ChatLib.command("wd")
 
 	new Thread(() => {
-        Thread.sleep(300)
+        Thread.sleep(500)
         checkWardrope(Player.getContainer(), Settings.ReaperArmorSlot, "&cSomething went wrong wd")
     }).start()
 
-	// after thread is done
-	// Thread.sleep(2000)
-	//sneak
-
-	// new Thread(() => {
-	// 	Thread.sleep(1000)
-    //     checkWardrope(Player.getContainer(), Settings.NecronArmorSlot, "&cSomething went wrong wd2")
-	// }).start()
-
-
 }).setChatCriteria("test"), () => Settings.AutoPotion)
 
-register("worldUnload", () => {
-	InP5 = false;
-});

@@ -33,7 +33,7 @@
 [wip]
 	reaper_armor_swap = true
 	auto_poison = "ec 1"
-	reaper_armor_slot = 1
+	reaper_armor_slot = 3
 	auto_potion = true
-	necron_armor_slot = 2
+	necron_armor_slot = 1
 
