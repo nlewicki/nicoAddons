@@ -1,7 +1,7 @@
 
 [f7_devices]
 	delay = 180
-	autoss_toggle = true
+	autoss_toggle = false
 	auto4 = true
 	auto4_toggle = false
 	no_rotate = false
@@ -15,16 +15,16 @@
 	"&5auto_twilight_command" = "ec 1"
 	"&cclean_&ff7_&atitles" = false
 	"&ablood_dialogue_skip" = false
-	"&a[&cclean_&ff7_&atitles]" = false
+	"&a[&cclean_&ff7_&atitles]" = true
 	auto_twilight = true
-	"&2auto_refill_ender_pearls" = false
+	"&2auto_refill_ender_pearls" = true
 	"&dauto_potion" = true
 	"&cblood_dialogue_skip" = false
-	"&bshort_skyblock_commands" = false
+	"&bshort_skyblock_commands" = true
 	auto_refill_ender_pearls = true
 	short_skyblock_commands = true
 	auto_potion = true
-	"&5auto_twilight" = false
+	"&5auto_twilight" = true
 	"&a(&cclean_&ff7_&atitles)" = false
 
 [auto4]
@@ -33,7 +33,7 @@
 [wip]
 	reaper_armor_swap = true
 	auto_poison = "ec 1"
-	reaper_armor_slot = 3
+	reaper_armor_slot = 4
 	auto_potion = true
 	necron_armor_slot = 1
 
