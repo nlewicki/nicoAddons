@@ -2,7 +2,7 @@
 /// <reference lib="es2015" />
 
 import Settings from "../Settings";
-import { registerWhen, ModMessage, PreGuiRenderEvent} from "../utils";
+import { registerWhen, ModMessage, PreGuiRenderEvent, getClass} from "../utils";
 /*
 const sneakKey = new KeyBind(Client.getMinecraft().field_71474_y.field_74311_E)
 

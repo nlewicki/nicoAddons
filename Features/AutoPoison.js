@@ -45,9 +45,13 @@ registerWhen(register("chat", () => {
     const poisonInInv = inventory.indexOf(351)
     let PlayerClass = getClass(Player.getName()).toLocaleLowerCase().removeFormatting()
 
-    if (poisonInInv !== -1 || !PlayerClass.includes('tank') || !PlayerClass.includes('healer')) {
+    if (poisonInInv !== -1 || !(PlayerClass.includes('tank') || PlayerClass.includes('healer'))) {
         if (poisonInInv !== -1) {
             ModMessage("&aPoison in inventory")
+            return
+        }
+        if (!PlayerClass.includes('tank')) {
+            ModMessage("&cYou are not a tank")
             return
         }
         ModMessage("&cYou are a not tank or healer, you don't need poison")
