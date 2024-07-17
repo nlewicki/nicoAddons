@@ -82,6 +82,7 @@ function checkWardrope(Container, slotIndex) {
         } 
     }
     if (PreviousArmorSlot == -1) {
+		Player.getPlayer().func_71053_j()
         CancelGUIRendering.unregister()
         ModMessage("&cSomething went wrong with /wd")
         return
@@ -132,6 +133,11 @@ function SwapBack(SlotIndex) {
 }
 
 registerWhen(register(`chat`, (e) => {
+	let PlayerClass = getClass(Player.getName()).toLocaleLowerCase().removeFormatting()
+	if (PlayerClass.includes('tank') || PlayerClass.includes('healer')) {
+		ModMessage("&cYou are a tank or healer, you don't need reaper swap")
+		return
+	}
 	CancelGUIRendering.register()
 	ChatLib.command("wd")
 

@@ -15,6 +15,7 @@
 	"&5auto_twilight_command" = "ec 1"
 	"&cclean_&ff7_&atitles" = false
 	"&ablood_dialogue_skip" = false
+	reaper_armor_slot = 4
 	"&a[&cclean_&ff7_&atitles]" = true
 	auto_twilight = true
 	"&2auto_refill_ender_pearls" = true

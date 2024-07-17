@@ -38,14 +38,14 @@ class Settings {
 	@SwitchProperty({
 		name: "Reaper Armor Swap",
 		description: "Automaticaly swaps to reaper armor, sneaks and swaps back for you",
-		category: "WIP"
+		category: "General"
 	})
 	ReaperSwap = false;
 
 	@SliderProperty({
 		name: "Reaper Armor Slot",
 		description: "The slot of the reaper armor",
-		category: "WIP",
+		category: "General",
 		min: 1,
 		max: 9,
 		increment: 1
