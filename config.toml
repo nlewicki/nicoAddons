@@ -8,10 +8,11 @@
 	auto_start = ""
 
 [general]
-	reaper_armor_swap = true
+	reaper_armor_swap = false
 	auto_twilight_command = "ec 1"
 	blood_dialogue_skip = false
 	clean_f7_titles = true
+	"&creaper_&0armor_swap" = true
 	"&5auto_twilight_command" = "ec 1"
 	"&cclean_&ff7_&atitles" = false
 	"&ablood_dialogue_skip" = false

@@ -66,4 +66,4 @@ registerWhen(register("chat", () => {
         checkPotionBag(Player.getContainer())
     }).start()
 
-}).setChatCriteria("[BOSS] Wither King: You.. again?") ,() => Settings.AutoPoison)
+}).setChatCriteria("[BOSS] Wither King: You... again?") ,() => Settings.AutoPoison)

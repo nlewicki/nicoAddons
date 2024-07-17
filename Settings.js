@@ -16,7 +16,7 @@ import {  @ButtonProperty, @PercentSliderProperty, @CheckboxProperty, @ColorProp
 class Settings {
 	@SwitchProperty({
 		name: "&5Auto Twilight",
-		description: "takes out arrow poison at the start of p5",
+		description: "takes out arrow poison at the start of p5\n &c!doesnt work with NEU Backpack thingy!",
 		category: "General"
 	})
 	AutoPoison = true;
@@ -36,7 +36,7 @@ class Settings {
 	AutoPotion = false;
 
 	@SwitchProperty({
-		name: "Reaper Armor Swap",
+		name: "&cReaper &0Armor Swap",
 		description: "Automaticaly swaps to reaper armor, sneaks and swaps back for you",
 		category: "General"
 	})
@@ -121,7 +121,7 @@ class Settings {
 		this.addDependency("Auto Start", "AutoSS Toggle")
 		this.addDependency("No Rotate", "AutoSS Toggle")
 		this.addDependency("Auto Twilight Command", "&5Auto Twilight")
-		this.addDependency("Reaper Armor Slot", "Reaper Armor Swap")
+		this.addDependency("Reaper Armor Slot", "&cReaper &0Armor Swap")
 	}
 }
 

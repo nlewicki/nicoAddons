@@ -41,22 +41,30 @@ function checkPotionBag(Container) {
 }
 
 
-registerWhen(register("chat", () => {
+registerWhen(register("chat", (event) => {
+    
+    try {
+        let massage = ChatLib.getChatMessage(event).replace(/-/g, "")
+        massage = massage.replace(new RegExp(`${massage.charAt(0)}`, "g"), "")
+    
+        if (!(/(\[(MVP|MVP\+|MVP\+\+|VIP|VIP\+|ADMIN|PIG|GM|YOUTUBE)\]\s)?(\w{3,16})\sentered\s((MM|The)\s)?Catacombs,\s(Floor\s[IVX]+)!/.test(massage))) return
+        // https://regex101.com/r/qcUGpw/1
+    
+        const inventory = Player.getInventory()
+        const potionInInv = inventory.indexOf(373)
+    
+        if (potionInInv !== -1) {
+            ModMessage("&aPotion in inventory")
+            return
+        }
+    
+        CancelGUIRendering.register()
+        ChatLib.command("pb");
+    
+        new Thread(() => {
+            Thread.sleep(1000)
+            checkPotionBag(Player.getContainer())
+        }).start()
+    } catch (e) {}
 
-    const inventory = Player.getInventory()
-    const potionInInv = inventory.indexOf(373)
-
-    if (potionInInv !== -1) {
-        ModMessage("&aPotion in inventory")
-        return
-    }
-
-    CancelGUIRendering.register()
-    ChatLib.command("pb");
-
-    new Thread(() => {
-        Thread.sleep(1000)
-        checkPotionBag(Player.getContainer())
-    }).start()
-
-}).setCriteria("${*} entered MM Catacombs, Floor VII!"), () => Settings.AutoPotion)
+}),() => Settings.AutoPotion)
